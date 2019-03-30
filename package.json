@@ -25,17 +25,20 @@
 				"title": "Readable Indent w/Pivot"
 			}
 		],
-		"configuration": {
-			"type": "Object",
-			"title": "Readable Indent configuration",
-			"properties": {
-				"readableIndent.pivot": {
-					"type": "boolean",
-					"default": false,
-					"description": "indent around the pivot character?"
-				}
+		"keybindings": [
+			{
+					"command": "extension.readableIndent.indent",
+					"key": "ctrl+i ctrl+a",
+					"mac": "ctrl+i cmd+a",
+					"when": "editorTextFocus && !editorReadonly"
+			},
+			{
+					"command": "extension.readableIndent.indentWithPivot",
+					"key": "ctrl+shift+b",
+					"mac": "cmd+shift+b",
+					"when": "editorTextFocus && !editorReadonly"
 			}
-		},
+		],
 		"menus": {
 			"editor/context": [
 				{

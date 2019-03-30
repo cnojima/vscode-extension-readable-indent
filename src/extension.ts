@@ -1,16 +1,12 @@
 import * as vscode from 'vscode';
 import Indenter from './Indenter';
 
-const config = vscode.workspace.getConfiguration('readableIndent');
-
 /**
  * VSCode activation registers relevant commands - this extension requires a text selection
  * @param context
  */
 export function activate(context: vscode.ExtensionContext) {
 	const commands: vscode.Disposable[] = [];
-
-	console.log(config);
 
 	// POC test activation - does nothing
 	commands.push(vscode.commands.registerCommand('extension.readableIndent', () => {
@@ -28,6 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {}
 
 const indent = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
+	const options = textEditor.options;
+	// console.log(JSON.stringify(options, null, 2));
 	formatText(textEditor, edit);
 };
 
@@ -44,10 +42,10 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		const lastLine = textEditor.document.lineAt(textEditor.selection.end.line);
 		const expandedSelection = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
 		const replace = new Indenter(textEditor.document.getText(expandedSelection));
+		replace.textEditorOptions = textEditor.options;
 		replace.pivot = onPivot;
 		const newCode = replace.indent();
 
-		// textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
 		edit.replace(textEditor.selection, newCode);
 		textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
 	}	catch (e) {
