@@ -1,0 +1,74 @@
+{
+	"name": "readable-indent",
+	"displayName": "readable-indent",
+	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"onCommand:extension.readableIndent.indent",
+		"onCommand:extension.readableIndent.indentWithPivot"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.readableIndent.indent",
+				"title": "Readable Indent"
+			},
+			{
+				"command": "extension.readableIndent.indentWithPivot",
+				"title": "Readable Indent w/Pivot"
+			}
+		],
+		"configuration": {
+			"type": "Object",
+			"title": "Readable Indent configuration",
+			"properties": {
+				"readableIndent.pivot": {
+					"type": "boolean",
+					"default": false,
+					"description": "indent around the pivot character?"
+				}
+			}
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"command": "extension.readableIndent.indent",
+					"group": "2_indentation@1",
+					"when": "editorTextFocus && !editorReadonly"
+				},
+				{
+					"command": "extension.readableIndent.indentWithPivot",
+					"group": "2_indentation@2",
+					"when": "editorTextFocus && !editorReadonly"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"cz-conventional-changelog": "^2.1.0",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}
