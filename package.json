@@ -1,11 +1,11 @@
 {
-	"name": "readable-indent",
-	"publisher": "cnojima",
-	"displayName": "readable-indent",
-	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
+  "name"        : "readable-indent",
+  "publisher"   : "cnojima",
+  "displayName" : "Readable Indent",
+  "description" : "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
 	"repository": {
-		"type": "git",
-		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
+    "type" : "git",
+    "url"  : "https://github.com/cnojima/vscode-extension-readable-indent.git"
 	},
 	"version": "0.0.4",
 	"engines": {
@@ -22,59 +22,70 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.readableIndent.indent",
-				"title": "Readable Indent"
+        "command" : "extension.readableIndent.indent",
+        "title"   : "Readable Indent"
 			},
 			{
-				"command": "extension.readableIndent.indentWithPivot",
-				"title": "Readable Indent w/Pivot"
+        "command" : "extension.readableIndent.indentWithPivot",
+        "title"   : "Readable Indent w/Pivot"
 			}
 		],
+		"configuration": {
+			"title": "Readable Indent configuration",
+			"type": "object",
+			"properties": {
+				"readableIndent.alphabetize": {
+					"type": "boolean",
+					"default": false,
+					"description": "Alphabetize selected code snippet on readable-indent"
+				}
+			}
+		},
 		"keybindings": [
 			{
-				"command": "extension.readableIndent.indent",
-				"key": "ctrl+i ctrl+a",
-				"mac": "ctrl+i cmd+a",
-				"when": "editorTextFocus && !editorReadonly"
+        "command" : "extension.readableIndent.indent",
+            "key" : "ctrl+i ctrl+a",
+            "mac" : "ctrl+i cmd+a",
+           "when" : "editorTextFocus && !editorReadonly"
 			},
 			{
-				"command": "extension.readableIndent.indentWithPivot",
-				"key": "ctrl+shift+b",
-				"mac": "cmd+shift+b",
-				"when": "editorTextFocus && !editorReadonly"
+        "command" : "extension.readableIndent.indentWithPivot",
+            "key" : "ctrl+shift+b",
+            "mac" : "cmd+shift+b",
+           "when" : "editorTextFocus && !editorReadonly"
 			}
 		],
 		"menus": {
 			"editor/context": [
 				{
-					"command": "extension.readableIndent.indent",
-					"group": "2_indentation@1",
-					"when": "editorTextFocus && !editorReadonly"
+          "command" : "extension.readableIndent.indent",
+            "group" : "2_indentation@1",
+             "when" : "editorTextFocus && !editorReadonly"
 				},
 				{
-					"command": "extension.readableIndent.indentWithPivot",
-					"group": "2_indentation@2",
-					"when": "editorTextFocus && !editorReadonly"
+          "command" : "extension.readableIndent.indentWithPivot",
+            "group" : "2_indentation@2",
+             "when" : "editorTextFocus && !editorReadonly"
 				}
 			]
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"release": "standard-version",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+    "vscode:prepublish": "npm run compile",
+    "compile"     : "tsc -p ./",
+    "watch"       : "tsc -watch -p ./",
+    "postinstall" : "node ./node_modules/vscode/bin/install",
+    "release"     : "standard-version",
+    "test"        : "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"@types/mocha": "^2.2.42",
-		"@types/node": "^10.12.21",
-		"cz-conventional-changelog": "^2.1.0",
-		"standard-version": "^5.0.2",
-		"tslint": "^5.12.1",
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28"
+    "@types/mocha"              : "^2.2.42",
+    "@types/node"               : "^10.12.21",
+    "cz-conventional-changelog" : "^2.1.0",
+    "standard-version"          : "^5.0.2",
+    "tslint"                    : "^5.12.1",
+    "typescript"                : "^3.3.1",
+    "vscode"                    : "^1.1.28"
 	},
 	"config": {
 		"commitizen": {
