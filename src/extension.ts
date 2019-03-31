@@ -1,11 +1,7 @@
 import * as vscode from 'vscode';
 import Indenter from './Indenter';
 
-
-
 const indent = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
-	const options = textEditor.options;
-	// console.log(JSON.stringify(options, null, 2));
 	formatText(textEditor, edit);
 };
 
@@ -48,11 +44,6 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
  */
 export function activate(context: vscode.ExtensionContext) {
 	const commands: vscode.Disposable[] = [];
-
-	// POC test activation - does nothing
-	commands.push(vscode.commands.registerCommand('extension.readableIndent', () => {
-		vscode.window.showInformationMessage('Readable Indent activated!');
-	}));
 
 	// https://vscode-docs.readthedocs.io/en/stable/extensionAPI/vscode-api/#commands.registerTextEditorCommand
 	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indent", indent));
