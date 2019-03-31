@@ -1,4 +1,4 @@
-import { TextEditorOptions } from "vscode";
+import { TextEditorOptions, WorkspaceConfiguration } from "vscode";
 /**
  * Indenter
  */
@@ -6,20 +6,22 @@ class Indenter {
   /**
    * Loc raw of indenter
    */
-  private locRaw: string[];
-  private loc: string[][] = [[]];
-  private initialIndent: string = '';
-  private padChar: string = ' ';
-  private _pivot: Boolean = false;
-  private pivotIndex: number = 0;
-  private pivotIndexAlt: number = 0;
-  private pivotSeparator: string = '=';
-  private _textEditorOptions: TextEditorOptions = {
-    tabSize: 2
+  private alphabetize        : boolean;
+  private locRaw             : string[];
+  private loc                : string[][] = [[]];
+  private initialIndent      : string = '';
+  private padChar            : string = ' ';
+  private _pivot             : Boolean = false;
+  private pivotIndex         : number = 0;
+  private pivotIndexAlt      : number = 0;
+  private pivotSeparator     : string = '=';
+  private _textEditorOptions : TextEditorOptions = {
+    tabSize                    : 2
   };
 
-  constructor(code: string) {
+  constructor(code: string, config: WorkspaceConfiguration) {
     this.locRaw = code.split(/[\n]/);
+    this.alphabetize = config.alphabetize;
   }
 
   /**
@@ -33,6 +35,10 @@ class Indenter {
     // convert tabs to spaces
     if (typeof this._textEditorOptions.tabSize === 'number') {
       tabSize = this._textEditorOptions.tabSize;
+    }
+
+    if (this.alphabetize) {
+      this.locRaw.sort((lineA, lineB) => lineA.trim() < lineB.trim() ? -1 : 1);
     }
 
     this.locRaw.forEach(line => {

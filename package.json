@@ -1,13 +1,13 @@
 {
 	"name": "readable-indent",
 	"publisher": "cnojima",
-	"displayName": "readable-indent",
+	"displayName": "Readable Indent",
 	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
 	},
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -30,6 +30,17 @@
 				"title": "Readable Indent w/Pivot"
 			}
 		],
+		"configuration": {
+			"title": "Readable Indent configuration",
+			"type": "object",
+			"properties": {
+				"readableIndent.alphabetize": {
+					"type": "boolean",
+					"default": false,
+					"description": "Alphabetize selected code snippet on readable-indent"
+				}
+			}
+		},
 		"keybindings": [
 			{
 				"command": "extension.readableIndent.indent",

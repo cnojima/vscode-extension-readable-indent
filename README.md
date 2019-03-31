@@ -18,6 +18,12 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 ### Center-justified readable-indent
 ![center-justified](docs/indent-with-pivot.gif)
 
+## Usage
+1. Select code snippet to make readable.
+2. Use context menu (right|ctrl click) or key mapping to apply readable-indent
+  * left-justfied indent: `ctrl-i ctrl-a`
+  * center-justified indent: `ctrl-shift-b`
+
 ## Extension Settings
 
 TODO:
@@ -28,6 +34,9 @@ This extension contributes the following settings:
 ## Known Issues
 
 Due to conflicting prioritization of whitespace between left & center-justified readable-indentation, toggling between the two will incrementally further indent the snippet.  The workaround is to undo the readable-indent before trying the other.
+
+Readable indent will use the first found instance of a pivot char (`=` or `:`).  In some sequences, this is incorrect.
+TODO: detect if first found instance is in a sub-scope of the string (quotes, parens, etc.)
 
 Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedagogy is out of scope for this extension ;).
 
