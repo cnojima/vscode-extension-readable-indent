@@ -1,5 +1,6 @@
 {
 	"name": "readable-indent",
+	"publisher": "cnojima",
 	"displayName": "readable-indent",
 	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
 	"repository": {
