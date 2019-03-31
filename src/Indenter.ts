@@ -1,8 +1,13 @@
 import { TextEditorOptions } from "vscode";
-
+/**
+ * Indenter
+ */
 class Indenter {
-  private loc: string[][] = [[]];
+  /**
+   * Loc raw of indenter
+   */
   private locRaw: string[];
+  private loc: string[][] = [[]];
   private initialIndent: string = '';
   private padChar: string = ' ';
   private _pivot: Boolean = false;
@@ -17,6 +22,9 @@ class Indenter {
     this.locRaw = code.split(/[\n]/);
   }
 
+  /**
+   * Determines indent type
+   */
   private determineIndentType(): void {
     let colonFound = 0;
     let equalFound = 0;
@@ -65,11 +73,19 @@ class Indenter {
       ? ":" : "=";
   }
 
+  /**
+   * Cleans right whitespace
+   * @param line
+   * @returns string Line cleansed of right whitespace
+   */
   private cleanRightWhitespace(line: string): string {
     line = line.replace(/\s+$/g, '');
     return line;
   }
 
+  /**
+   * Finds pivot index
+   */
   private findPivotIndex() {
     this.loc = this.locRaw.map(line_s => {
       const line = [
@@ -88,14 +104,24 @@ class Indenter {
     });
   }
 
+  /**
+   * Sets text editor options
+   */
   public set textEditorOptions(options: TextEditorOptions) {
     this._textEditorOptions = options;
   }
 
+  /**
+   * Sets pivot
+   */
   public set pivot(onPivot: boolean) {
     this._pivot = onPivot;
   }
 
+  /**
+   * Indents indenter
+   * @returns string Indented as requested
+   */
   public indent(): string {
     const joined: String[] = [];
 
