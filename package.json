@@ -2,6 +2,10 @@
 	"name": "readable-indent",
 	"displayName": "readable-indent",
 	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
+	},
 	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.32.0"
@@ -59,12 +63,14 @@
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
+		"release": "standard-version",
 		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
 		"cz-conventional-changelog": "^2.1.0",
+		"standard-version": "^5.0.2",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode": "^1.1.28"
