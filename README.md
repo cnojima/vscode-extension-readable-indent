@@ -6,9 +6,8 @@ Indents imports, KVPs (like object literals) with a pivot point, padding whitesp
 
 ## Features
 
-Simple indentation will make your code easier to visually scan.  This extension will indent two common patterns on a pivot character:
-1. `=`
-2. `:`
+Simple indentation will make your code easier to visually scan.  This extension will indent two common patterns on a pivot character:  `=` or  `:`
+
 ![intro](docs/intro.gif)
 
 When applying readable-indent, use the pattern that makes the code snippet most readable:
@@ -26,7 +25,6 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 
 ## Extension Settings
 
-TODO:
 This extension contributes the following settings:
 
 * `readableIndent.alphabetize`: set to `true` to alpha-order the snippet being readble-indented
