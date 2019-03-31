@@ -91,5 +91,12 @@
 		"commitizen": {
 			"path": "./node_modules/cz-conventional-changelog"
 		}
-	}
+	},
+	"standard-version": {
+    "skip": {
+			"bump": true,
+			"commit": true,
+			"tag": true
+    }
+  }
 }
