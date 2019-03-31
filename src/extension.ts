@@ -34,7 +34,7 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		// re-select the newly replaced lines to keep visual context in editor
 		textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
 	}	catch (e) {
-		vscode.window.showInformationMessage(e.message);
+		vscode.window.showInformationMessage(`${e.message}\n\nPlease report to https://github.com/cnojima/vscode-extension-readable-indent/issues`);
 		console.error(e);
 	}
 };

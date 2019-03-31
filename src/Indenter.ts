@@ -16,7 +16,7 @@ class Indenter {
   private pivotIndexAlt      : number = 0;
   private pivotSeparator     : string = '=';
   private _textEditorOptions : TextEditorOptions = {
-    tabSize                    : 2
+    tabSize : 2
   };
 
   constructor(code: string, config: WorkspaceConfiguration) {
@@ -69,7 +69,6 @@ class Indenter {
           ) {
             this.initialIndent = indent;
             this.padChar = this.initialIndent.charAt(0);
-            // console.log(`${indent.length}[${indent}]`);
           }
         }
       }
@@ -129,23 +128,21 @@ class Indenter {
    * @returns string Indented as requested
    */
   public indent(): string {
-    const joined: String[] = [];
-
     this.determineIndentType();
 
     this.findPivotIndex();
 
-    this.loc.map(line => {
+    const joined: String[] = this.loc.map(line => {
       if(line[0] && line[1]) {
         const line0 = line[0].trim();
 
         if (this._pivot) {
-          joined.push([line0.padStart(this.pivotIndex, this.padChar), this.pivotSeparator, line[1].trim()].join(' '));
+          return [line0.padStart(this.pivotIndex, this.padChar), this.pivotSeparator, line[1].trim()].join(' ');
         } else {
-          joined.push([this.initialIndent, line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, ' '), ' ', this.pivotSeparator, ' ', line[1].trim()].join(''));
+          return [this.initialIndent, line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, ' '), ' ', this.pivotSeparator, ' ', line[1].trim()].join('');
         }
       } else {
-        joined.push(line.join('').replace(/[\n|\r]/gm, ''));
+        return line.join('').replace(/[\n|\r]/gm, '');
       }
     });
 
