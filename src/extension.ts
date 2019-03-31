@@ -15,6 +15,7 @@ const indentWithPivot = (textEditor: vscode.TextEditor, edit: vscode.TextEditorE
 const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, onPivot: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
+	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 
 	try {
 		const firstLine = doc.lineAt(sel.start.line);
@@ -23,7 +24,7 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		// ensure that entire lines are being replaced as the granularity is line-based
 		const expandedSelection = new vscode.Range(firstLine.lineNumber, 0, lastLine.lineNumber + 1, 0);
 		// use the Indenter to munge the full selection
-		const replace = new Indenter(doc.getText(expandedSelection));
+		const replace = new Indenter(doc.getText(expandedSelection), config);
 		// pass in context like `tabSize`
 		replace.textEditorOptions = textEditor.options;
 		// tell Indenter instance to use left or center justification
