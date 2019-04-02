@@ -10,7 +10,7 @@ const path = require('path');
 
 const supportPath = path.resolve(__dirname, '../../src/test/support');
 
-suite("Github Issue 4", function () {
+suite("Github Issue #4", function () {
   const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 
   test('Github Issue 4 test', () => {
