@@ -1,4 +1,6 @@
 import { TextEditorOptions, WorkspaceConfiguration } from "vscode";
+import customAlphaSort from './util/alpha-sort';
+
 /**
  * Indenter
  */
@@ -19,7 +21,7 @@ class Indenter {
     tabSize : 2
   };
 
-  constructor(code: string, config: WorkspaceConfiguration) {
+  constructor(code: string, config: WorkspaceConfiguration | { alphabetize: boolean }) {
     this.locRaw = code.split(/[\n]/);
     this.alphabetize = config.alphabetize;
   }
@@ -37,16 +39,8 @@ class Indenter {
       tabSize = this._textEditorOptions.tabSize;
     }
 
-    if (this.alphabetize) {
-      this.locRaw.sort((lineA, lineB) => {
-        const a = lineA.trim();
-        const b = lineB.trim();
-        
-        if (a && b) {
-          return (a < b) ? -1 : 1
-        }
-        return 0;
-      });
+    if (this.alphabetize === true) {
+      this.locRaw = customAlphaSort(this.locRaw);
     }
 
     this.locRaw.forEach(line => {

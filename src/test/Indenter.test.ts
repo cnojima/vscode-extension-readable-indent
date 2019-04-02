@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import Indenter from '../Indenter';
 import * as vscode from 'vscode';
 
-suite("Indenter Class Tests", function () {
+suite("Indenter Class Tests", () => {
 	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 
 	const pivotEqual = `const fs = require('fs');
@@ -24,7 +24,7 @@ const cookies = require('../config/rco-to/cookies');
     "husky": "^1.3.1"
 `;
 
-	// Defines a Mocha unit test
+	// Defines a Mocha unasync it test
 	test("Simple `=` indent", () => {
 		const indented = `const fs             = require('fs');
 const path           = require('path');
@@ -36,8 +36,7 @@ const getCollection  = require('./get-collection');
 const pupOptions     = require('../config/puppeteer');
 const cookies        = require('../config/rco-to/cookies');
 `;
-		
-		const foo = new Indenter(pivotEqual, config).indent();
+		const foo = new Indenter(pivotEqual, { alphabetize: false }).indent();
 		assert.equal(foo, indented);
 	});
 
@@ -49,13 +48,11 @@ const cookies        = require('../config/rco-to/cookies');
     "expect.js"                 : "^0.3.1",
     "husky"                     : "^1.3.1"
 `;
-		const foo = new Indenter(pivotColon, config).indent();
+		const foo = new Indenter(pivotColon, { alphabetize: false }).indent();
 		assert.equal(foo, indented);
 	});
 
 	test("Simple `=` with pivot indent", () => {
-		// config.set('alphabetize', false);
-	
 		const indented = `            const fs = require('fs');
           const path = require('path');
         const mkdirp = require('mkdirp');
@@ -66,10 +63,9 @@ const chapterCleanup = require('../util/chapter-cleanup');
     const pupOptions = require('../config/puppeteer');
        const cookies = require('../config/rco-to/cookies');
 `;
-		const ind = new Indenter(pivotEqual, config);
+		const ind = new Indenter(pivotEqual, { alphabetize: false });
 		ind.pivot = true;
 		const foo = ind.indent();
-		
 		assert.equal(foo, indented);
 	});
 
@@ -81,10 +77,10 @@ const chapterCleanup = require('../util/chapter-cleanup');
                     "expect.js" : "^0.3.1",
                         "husky" : "^1.3.1"
 `;
-		const ind = new Indenter(pivotColon, config);
+
+		const ind = new Indenter(pivotColon, { alphabetize: false });
 		ind.pivot = true;
 		const foo = ind.indent();
-
 		assert.equal(foo, indented);
 	});
 
@@ -100,9 +96,7 @@ const path           = require('path');
 const pupOptions     = require('../config/puppeteer');
 const puppeteer      = require('puppeteer');
 `;
-		config.update('alphabetize', true);
-
-		const foo = new Indenter(pivotEqual, config).indent();
+		const foo = new Indenter(pivotEqual, { alphabetize: true }).indent();
 		assert.equal(foo, indented);
 	});
 
@@ -114,12 +108,9 @@ const puppeteer      = require('puppeteer');
                         "husky" : "^1.3.1"
                         "mocha" : "^6.0.2",
 `;
-		config.update('alphabetize', true);
-
-		const ind = new Indenter(pivotColon, config);
+		const ind = new Indenter(pivotColon, { alphabetize: true });
 		ind.pivot = true;
 		const foo = ind.indent();
 		assert.equal(foo, indented);
-
 	});
 });

@@ -27,7 +27,7 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 
 This extension contributes the following settings:
 
-* `readableIndent.alphabetize`: set to `true` to alpha-order the snippet being readble-indented
+* `readableIndent.alphabetize`: set to `true` to alpha-order the snippet being readable-indented.
 
 ## Known Issues
 
