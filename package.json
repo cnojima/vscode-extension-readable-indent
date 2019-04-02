@@ -45,7 +45,7 @@
 			{
 				"command": "extension.readableIndent.indent",
 				"key": "ctrl+i ctrl+a",
-				"mac": "ctrl+i cmd+a",
+				"mac": "cmd+i cmd+a",
 				"when": "editorTextFocus && !editorReadonly"
 			},
 			{
