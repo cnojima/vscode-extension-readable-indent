@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.2](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.1...v0.1.2) (2019-04-02)
+
+
+### Bug Fixes
+
+* **alphabetize:** Refactor [].sort(custom) to a external sort mechanism to correctly preserve newlin ([5b0abf2](https://github.com/cnojima/vscode-extension-readable-indent/commit/5b0abf2)), closes [#3](https://github.com/cnojima/vscode-extension-readable-indent/issues/3)
+
+
+
 ## [0.1.1](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.0...v0.1.1) (2019-04-02)
 
 
