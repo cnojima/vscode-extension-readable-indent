@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.4](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.3...v0.1.4) (2019-04-02)
+
+
+### Bug Fixes
+
+* **contributes:** Fix typo in key-bindings for OSX users; instead of the `ctrl-i cmd-a` sequence, it ([9dd7179](https://github.com/cnojima/vscode-extension-readable-indent/commit/9dd7179))
+
+
+
 ## [0.1.3](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.2...v0.1.3) (2019-04-02)
 
 
