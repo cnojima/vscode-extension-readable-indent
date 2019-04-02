@@ -104,13 +104,33 @@ class Indenter {
   }
 
   /**
-   * Finds pivot index
+   * Finds pivot index and seeds property `loc`
    */
   private findPivotIndex() {
     this.loc = this.locRaw.map(line_s => {
+      let startFrom       = 0;
+      let focusPivotIndex = line_s.indexOf(this.pivotSeparator, startFrom);
+      const pivots        = line_s.match(new RegExp(this.pivotSeparator, 'g'));
+      
+      if (pivots && pivots.length > 1) {
+        let lenPivots = pivots.length || 0;
+
+        while (!this.isUseablePivot(line_s, focusPivotIndex) && lenPivots > 1) {
+          lenPivots--;
+          startFrom = focusPivotIndex;
+  
+          const _pivotIndex = line_s.indexOf(this.pivotSeparator, startFrom + 1);
+          
+          if (_pivotIndex > startFrom) {
+            focusPivotIndex = _pivotIndex;
+          }
+        }
+  
+      }
+      
       const line = [
-        this.cleanRightWhitespace(line_s.substr(0, line_s.indexOf(this.pivotSeparator))),
-        line_s.substr(line_s.indexOf(this.pivotSeparator) + 1),
+        this.cleanRightWhitespace(line_s.substr(0, focusPivotIndex)),
+        line_s.substr(focusPivotIndex + 1),
       ];
 
       // get pivot index for center-justified indentation
@@ -122,6 +142,19 @@ class Indenter {
 
       return line;
     });
+  }
+
+  private isUseablePivot(line: string, index: number): boolean {
+    let usable = true;
+    const contextChars = ['"', "'", '`'];
+
+    for (let i=0, n=line.length; i<n && i<index; i++) {
+      if (contextChars.indexOf(line.charAt(i)) > -1) {
+        usable = !usable;
+      }
+    }
+
+    return usable;
   }
 
   /*****************************************************************************
