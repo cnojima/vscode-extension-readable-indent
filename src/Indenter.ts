@@ -8,12 +8,12 @@ class Indenter {
   /**
    * Loc raw of indenter
    */
+  private _centerJustify     : boolean = false;
   private alphabetize        : boolean;
   private locRaw             : string[];
   private loc                : string[][] = [[]];
   private initialIndent      : string = '';
   private padChar            : string = ' ';
-  private _pivot             : Boolean = false;
   private pivotIndex         : number = 0;
   private pivotIndexAlt      : number = 0;
   private pivotSeparator     : string = '=';
@@ -26,8 +26,15 @@ class Indenter {
     this.alphabetize = config.alphabetize;
   }
 
+  private sortLines(): void {
+    // alpha sort if configuration is set
+    if (this.alphabetize === true) {
+      this.locRaw = customAlphaSort(this.locRaw);
+    }
+  }
+
   /**
-   * Determines indent type
+   * Determines indent type: `=` or `:` (currently supported)
    */
   private determineIndentType(): void {
     let colonFound = 0;
@@ -37,10 +44,6 @@ class Indenter {
     // convert tabs to spaces
     if (typeof this._textEditorOptions.tabSize === 'number') {
       tabSize = this._textEditorOptions.tabSize;
-    }
-
-    if (this.alphabetize === true) {
-      this.locRaw = customAlphaSort(this.locRaw);
     }
 
     this.locRaw.forEach(line => {
@@ -66,8 +69,8 @@ class Indenter {
         if (indent.length > 0) {
           if (
             !this.initialIndent // first entry
-              || (!this._pivot && (indent.length > this.initialIndent.length)) // for left-justified, max is desired
-              || ( this._pivot && (indent.length < this.initialIndent.length)) // for center-justified, min is desired
+              || (!this._centerJustify && (indent.length > this.initialIndent.length)) // for left-justified, max is desired
+              || ( this._centerJustify && (indent.length < this.initialIndent.length)) // for center-justified, min is desired
           ) {
             this.initialIndent = indent;
             this.padChar = this.initialIndent.charAt(0);
@@ -111,6 +114,10 @@ class Indenter {
     });
   }
 
+  /*****************************************************************************
+   **** start: PUBLIC METHODS and PROPERTIES 
+   *****************************************************************************/
+
   /**
    * Sets text editor options
    */
@@ -121,8 +128,8 @@ class Indenter {
   /**
    * Sets pivot
    */
-  public set pivot(onPivot: boolean) {
-    this._pivot = onPivot;
+  public set centerJustify(centerJustified: boolean) {
+    this._centerJustify = centerJustified;
   }
 
   /**
@@ -130,6 +137,8 @@ class Indenter {
    * @returns string Indented as requested
    */
   public indent(): string {
+    this.sortLines();
+
     this.determineIndentType();
 
     this.findPivotIndex();
@@ -138,7 +147,7 @@ class Indenter {
       if(line[0] && line[1]) {
         const line0 = line[0].trim();
 
-        if (this._pivot) {
+        if (this._centerJustify) {
           return [line0.padStart(this.pivotIndex, this.padChar), this.pivotSeparator, line[1].trim()].join(' ');
         } else {
           return [this.initialIndent, line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, ' '), ' ', this.pivotSeparator, ' ', line[1].trim()].join('');

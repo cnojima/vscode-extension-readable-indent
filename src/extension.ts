@@ -12,7 +12,7 @@ const indentWithPivot = (textEditor: vscode.TextEditor, edit: vscode.TextEditorE
 /**
  * Perform indention and replacement
  */
-const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, onPivot: boolean = false) => {
+const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
 	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
@@ -28,7 +28,7 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		// pass in context like `tabSize`
 		replace.textEditorOptions = textEditor.options;
 		// tell Indenter instance to use left or center justification
-		replace.pivot = onPivot;
+		replace.centerJustify = centerJustified;
 		// replace with indented code
 		edit.replace(expandedSelection,  replace.indent());
 		// re-select the newly replaced lines to keep visual context in editor

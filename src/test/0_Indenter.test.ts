@@ -64,7 +64,7 @@ const chapterCleanup = require('../util/chapter-cleanup');
        const cookies = require('../config/rco-to/cookies');
 `;
 		const ind = new Indenter(pivotEqual, { alphabetize: false });
-		ind.pivot = true;
+		ind.centerJustify = true;
 		const foo = ind.indent();
 		assert.equal(foo, indented);
 	});
@@ -79,7 +79,7 @@ const chapterCleanup = require('../util/chapter-cleanup');
 `;
 
 		const ind = new Indenter(pivotColon, { alphabetize: false });
-		ind.pivot = true;
+		ind.centerJustify = true;
 		const foo = ind.indent();
 		assert.equal(foo, indented);
 	});
@@ -109,7 +109,7 @@ const puppeteer      = require('puppeteer');
                         "mocha" : "^6.0.2",
 `;
 		const ind = new Indenter(pivotColon, { alphabetize: true });
-		ind.pivot = true;
+		ind.centerJustify = true;
 		const foo = ind.indent();
 		assert.equal(foo, indented);
 	});
