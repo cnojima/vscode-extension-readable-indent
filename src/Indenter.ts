@@ -38,7 +38,15 @@ class Indenter {
     }
 
     if (this.alphabetize) {
-      this.locRaw.sort((lineA, lineB) => lineA.trim() < lineB.trim() ? -1 : 1);
+      this.locRaw.sort((lineA, lineB) => {
+        const a = lineA.trim();
+        const b = lineB.trim();
+        
+        if (a && b) {
+          return (a < b) ? -1 : 1
+        }
+        return 0;
+      });
     }
 
     this.locRaw.forEach(line => {
