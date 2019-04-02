@@ -1,16 +1,9 @@
 import * as assert from 'assert';
 import Indenter from '../Indenter';
-import vscode, { WorkspaceConfiguration } from 'vscode';
+import * as vscode from 'vscode';
 
 suite("Indenter Class Tests", function () {
-	const config: WorkspaceConfiguration = {
-    get         : () => null,
-    has         : () => null,
-    inspect     : () => null,
-    update      : () => null,
-    set         : (k: string, v: any) => this[k] = v,
-    alphabetize : false
-	};
+	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 
 	const pivotEqual = `const fs = require('fs');
 const path = require('path');
@@ -107,10 +100,9 @@ const path           = require('path');
 const pupOptions     = require('../config/puppeteer');
 const puppeteer      = require('puppeteer');
 `;
+		config.update('alphabetize', true);
 
-		const foo = new Indenter(pivotEqual, {
-			alphabetize: true
-		}).indent();
+		const foo = new Indenter(pivotEqual, config).indent();
 		assert.equal(foo, indented);
 	});
 
@@ -122,9 +114,9 @@ const puppeteer      = require('puppeteer');
                         "husky" : "^1.3.1"
                         "mocha" : "^6.0.2",
 `;
-		const ind = new Indenter(pivotColon, {
-			alphabetize: true
-		});
+		config.update('alphabetize', true);
+
+		const ind = new Indenter(pivotColon, config);
 		ind.pivot = true;
 		const foo = ind.indent();
 		assert.equal(foo, indented);
