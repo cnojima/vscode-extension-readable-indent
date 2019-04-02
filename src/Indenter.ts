@@ -5,18 +5,25 @@ import customAlphaSort from './util/alpha-sort';
  * Indenter
  */
 class Indenter {
-  /**
-   * Loc raw of indenter
-   */
+  // @description Flag to center-justify on pivot char.
   private _centerJustify     : boolean = false;
+  // @description Flag to alphabetize lines of code when making readable
   private alphabetize        : boolean;
+  // @description Lines of code split on newlines
   private locRaw             : string[];
+  // @description Lines of code tokenized on pivot char
   private loc                : string[][] = [[]];
+  // @description Capture of detected indent - preserves tab chars vs space chars
   private initialIndent      : string = '';
+  // @description Character to use when left-padding for indentation
   private padChar            : string = ' ';
+  // @description Detected character index of pivot character for center-justified indentation
   private pivotIndex         : number = 0;
+  // @description Detected character index of pivot character for left-justified indentation
   private pivotIndexAlt      : number = 0;
+  // @description Detected character for pivot
   private pivotSeparator     : string = '=';
+  // @description Expanding tabs to space for indentation, detected from workspace.editor settings
   private _textEditorOptions : TextEditorOptions = {
     tabSize : 2
   };
@@ -65,12 +72,15 @@ class Indenter {
       if (eqIdx > -1 || coIdx > -1) {
         const indent = line.substr(0, line.search(/\S/));
 
-        // TODO: when going from pivot to non-pivot, the matched text is indented (undesirably?).  prevent whitespace creep
+        // TODO: when going from pivot to non-pivot, 
+        // the matched text is indented (undesirably?).  prevent whitespace creep
         if (indent.length > 0) {
           if (
             !this.initialIndent // first entry
-              || (!this._centerJustify && (indent.length > this.initialIndent.length)) // for left-justified, max is desired
-              || ( this._centerJustify && (indent.length < this.initialIndent.length)) // for center-justified, min is desired
+              // for left-justified, max is desired
+              || (!this._centerJustify && (indent.length > this.initialIndent.length))
+              // for center-justified, min is desired
+              || ( this._centerJustify && (indent.length < this.initialIndent.length))
           ) {
             this.initialIndent = indent;
             this.padChar = this.initialIndent.charAt(0);
@@ -143,21 +153,31 @@ class Indenter {
 
     this.findPivotIndex();
 
-    const joined: String[] = this.loc.map(line => {
+    return this.loc.map(line => {
       if(line[0] && line[1]) {
         const line0 = line[0].trim();
 
         if (this._centerJustify) {
-          return [line0.padStart(this.pivotIndex, this.padChar), this.pivotSeparator, line[1].trim()].join(' ');
+          return [
+            line0.padStart(this.pivotIndex, this.padChar),
+            this.pivotSeparator,
+            line[1].trim()
+          ].join(' ');
         } else {
-          return [this.initialIndent, line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, ' '), ' ', this.pivotSeparator, ' ', line[1].trim()].join('');
+          return [
+            this.initialIndent,
+            line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, this.padChar),
+            ' ',
+            this.pivotSeparator,
+            ' ',
+            line[1].trim()
+          ].join('');
         }
+
       } else {
         return line.join('').replace(/[\n|\r]/gm, '');
       }
-    });
-
-    return joined.join('\n');
+    }).join('\n');
   }
 }
 
