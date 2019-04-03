@@ -27,20 +27,17 @@
 			},
 			{
 				"command": "extension.readableIndent.indentWithPivot",
-				"title": "Readable Indent w/Pivot"
+				"title": "Readable Indent Center"
+			},
+			{
+				"command": "extension.readableIndent.indentAlpha",
+				"title": "Readable Indent - alphabetized"
+			},
+			{
+				"command": "extension.readableIndent.indentWithPivotAlpha",
+				"title": "Readable Indent Center - alphabetized"
 			}
 		],
-		"configuration": {
-			"title": "Readable Indent configuration",
-			"type": "object",
-			"properties": {
-				"readableIndent.alphabetize": {
-					"type": "boolean",
-					"default": false,
-					"description": "Alphabetize selected code snippet on readable-indent"
-				}
-			}
-		},
 		"keybindings": [
 			{
 				"command": "extension.readableIndent.indent",
@@ -50,8 +47,20 @@
 			},
 			{
 				"command": "extension.readableIndent.indentWithPivot",
-				"key": "ctrl+shift+b",
-				"mac": "cmd+shift+b",
+				"key": "ctrl+i ctrl+b",
+				"mac": "cmd+i cmd+b",
+				"when": "editorTextFocus && !editorReadonly"
+			},
+			{
+				"command": "extension.readableIndent.indentAlpha",
+				"key": "ctrl+i ctrl+shift+a",
+				"mac": "cmd+i cmd+shift+a",
+				"when": "editorTextFocus && !editorReadonly"
+			},
+			{
+				"command": "extension.readableIndent.indentWithPivotAlpha",
+				"key": "ctrl+i ctrl+shift+b",
+				"mac": "cmd+i cmd+shift+b",
 				"when": "editorTextFocus && !editorReadonly"
 			}
 		],
@@ -65,6 +74,16 @@
 				{
 					"command": "extension.readableIndent.indentWithPivot",
 					"group": "2_indentation@2",
+					"when": "editorTextFocus && !editorReadonly"
+				},
+				{
+					"command": "extension.readableIndent.indentAlpha",
+					"group": "2_indentation@3",
+					"when": "editorTextFocus && !editorReadonly"
+				},
+				{
+					"command": "extension.readableIndent.indentWithPivotAlpha",
+					"group": "2_indentation@4",
 					"when": "editorTextFocus && !editorReadonly"
 				}
 			]

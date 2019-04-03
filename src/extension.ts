@@ -4,18 +4,26 @@ import Indenter from './Indenter';
 const indent = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
 	formatText(textEditor, edit);
 };
-
+const indentAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
+	formatText(textEditor, edit, false, true);
+};
 const indentWithPivot = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
 	formatText(textEditor, edit, true);
+};
+const indentWithPivotAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
+	formatText(textEditor, edit, true, true);
 };
 
 /**
  * Perform indention and replacement
  */
-const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false) => {
+const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false, alphabetize: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
-	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
+	const wsConfig: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
+	const config = {
+		alphabetize: alphabetize ? alphabetize : wsConfig.alphabetize
+	};
 
 	try {
 		const firstLine = doc.lineAt(sel.start.line);
@@ -49,6 +57,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// https://vscode-docs.readthedocs.io/en/stable/extensionAPI/vscode-api/#commands.registerTextEditorCommand
 	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indent", indent));
 	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentWithPivot", indentWithPivot));
+	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentAlpha", indentAlpha));
+	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentWithPivotAlpha", indentWithPivotAlpha));
 
 	context.subscriptions.push(...commands);
 }
