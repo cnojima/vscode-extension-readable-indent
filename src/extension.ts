@@ -4,18 +4,25 @@ import Indenter from './Indenter';
 const indent = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
 	formatText(textEditor, edit);
 };
-
+const indentAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
+	formatText(textEditor, edit, false, true);
+};
 const indentWithPivot = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
 	formatText(textEditor, edit, true);
+};
+const indentWithPivotAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, thisArg: any): void => {
+	formatText(textEditor, edit, true, true);
 };
 
 /**
  * Perform indention and replacement
  */
-const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, onPivot: boolean = false) => {
+const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false, alphabetize: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
-	const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
+	const config = {
+		alphabetize: alphabetize
+	};
 
 	try {
 		const firstLine = doc.lineAt(sel.start.line);
@@ -28,13 +35,13 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		// pass in context like `tabSize`
 		replace.textEditorOptions = textEditor.options;
 		// tell Indenter instance to use left or center justification
-		replace.pivot = onPivot;
+		replace.centerJustify = centerJustified;
 		// replace with indented code
 		edit.replace(expandedSelection,  replace.indent());
 		// re-select the newly replaced lines to keep visual context in editor
 		textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
 	}	catch (e) {
-		vscode.window.showInformationMessage(e.message);
+		vscode.window.showInformationMessage(`${e.message}\n\nPlease report to https://github.com/cnojima/vscode-extension-readable-indent/issues`);
 		console.error(e);
 	}
 };
@@ -49,6 +56,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// https://vscode-docs.readthedocs.io/en/stable/extensionAPI/vscode-api/#commands.registerTextEditorCommand
 	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indent", indent));
 	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentWithPivot", indentWithPivot));
+	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentAlpha", indentAlpha));
+	commands.push(vscode.commands.registerTextEditorCommand("extension.readableIndent.indentWithPivotAlpha", indentWithPivotAlpha));
 
 	context.subscriptions.push(...commands);
 }
