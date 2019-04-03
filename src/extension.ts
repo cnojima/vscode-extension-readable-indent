@@ -20,9 +20,8 @@ const indentWithPivotAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEd
 const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false, alphabetize: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
-	const wsConfig: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 	const config = {
-		alphabetize: alphabetize ? alphabetize : wsConfig.alphabetize
+		alphabetize: alphabetize
 	};
 
 	try {
