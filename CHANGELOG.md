@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.2.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.4...v0.2.0) (2019-04-03)
+
+
+### Features
+
+* **alphabetize:** Enable alphabetizing from commands (menu, keyboard, command prompt).  Redact conf ([cd4583a](https://github.com/cnojima/vscode-extension-readable-indent/commit/cd4583a))
+
+
+
 ## [0.1.4](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.3...v0.1.4) (2019-04-02)
 
 
