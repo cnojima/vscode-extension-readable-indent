@@ -23,18 +23,9 @@ When applying readable-indent, use the pattern that makes the code snippet most 
   * left-justfied indent: `ctrl-i ctrl-a`
   * center-justified indent: `ctrl-shift-b`
 
-## Extension Settings
-
-This extension contributes the following settings:
-
-* `readableIndent.alphabetize`: set to `true` to alpha-order the snippet being readable-indented.
-
 ## Known Issues
 
 Due to conflicting prioritization of whitespace between left & center-justified readable-indentation, toggling between the two will incrementally further indent the snippet.  The workaround is to undo the readable-indent before trying the other.
-
-Readable indent will use the first found instance of a pivot char (`=` or `:`).  In some sequences, this is incorrect.
-TODO: detect if first found instance is in a sub-scope of the string (quotes, parens, etc.)
 
 Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedagogy is out of scope for this extension ;).
 
