@@ -54,3 +54,7 @@ Initial release on VSCE, dogfooding.
 ### 0.2.0
 
 All Readable Indent functionality exposed via menus, keyboard-chords, and command prompt.
+
+### 1.0.0
+
+Release with all known issues resolved.
