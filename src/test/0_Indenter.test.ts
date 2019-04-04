@@ -36,7 +36,9 @@ const getCollection  = require('./get-collection');
 const pupOptions     = require('../config/puppeteer');
 const cookies        = require('../config/rco-to/cookies');
 `;
-		const foo = new Indenter(pivotEqual, { alphabetize: false }).indent();
+		const ind = new Indenter();
+		ind.alphabetize = false;
+		const foo = ind.indent(pivotEqual);
 		assert.equal(foo, indented);
 	});
 
@@ -48,7 +50,9 @@ const cookies        = require('../config/rco-to/cookies');
     "expect.js"                 : "^0.3.1",
     "husky"                     : "^1.3.1"
 `;
-		const foo = new Indenter(pivotColon, { alphabetize: false }).indent();
+		const ind = new Indenter();
+		ind.alphabetize = false;
+		const foo = ind.indent(pivotColon);
 		assert.equal(foo, indented);
 	});
 
@@ -63,9 +67,10 @@ const chapterCleanup = require('../util/chapter-cleanup');
     const pupOptions = require('../config/puppeteer');
        const cookies = require('../config/rco-to/cookies');
 `;
-		const ind = new Indenter(pivotEqual, { alphabetize: false });
+		const ind = new Indenter();
+		ind.alphabetize = false;
 		ind.centerJustify = true;
-		const foo = ind.indent();
+		const foo = ind.indent(pivotEqual);
 		assert.equal(foo, indented);
 	});
 
@@ -78,9 +83,10 @@ const chapterCleanup = require('../util/chapter-cleanup');
                         "husky" : "^1.3.1"
 `;
 
-		const ind = new Indenter(pivotColon, { alphabetize: false });
+		const ind = new Indenter();
+		ind.alphabetize = false;
 		ind.centerJustify = true;
-		const foo = ind.indent();
+		const foo = ind.indent(pivotColon);
 		assert.equal(foo, indented);
 	});
 
@@ -96,7 +102,9 @@ const path           = require('path');
 const pupOptions     = require('../config/puppeteer');
 const puppeteer      = require('puppeteer');
 `;
-		const foo = new Indenter(pivotEqual, { alphabetize: true }).indent();
+		const ind = new Indenter();
+		ind.alphabetize = true;
+		const foo = ind.indent(pivotEqual);
 		assert.equal(foo, indented);
 	});
 
@@ -108,9 +116,10 @@ const puppeteer      = require('puppeteer');
                         "husky" : "^1.3.1"
                         "mocha" : "^6.0.2",
 `;
-		const ind = new Indenter(pivotColon, { alphabetize: true });
+		const ind = new Indenter();
+		ind.alphabetize = true;
 		ind.centerJustify = true;
-		const foo = ind.indent();
+		const foo = ind.indent(pivotColon);
 		assert.equal(foo, indented);
 	});
 });

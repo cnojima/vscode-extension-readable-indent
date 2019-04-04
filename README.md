@@ -17,6 +17,9 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 ### Left-justified, alphabetized readable-indent
 ![left-justified](docs/indent-alpha.gif)
 
+### Center-justified readable-indent
+![center-justified](docs/indent-center.gif)
+
 ### Center-justified, alphabetized readable-indent
 ![center-justified](docs/indent-center-alpha.gif)
 
@@ -33,8 +36,6 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 
 
 ## Known Issues
-
-Due to conflicting prioritization of whitespace between left & center-justified readable-indentation, toggling between the two will incrementally further indent the snippet.  The workaround is to undo the readable-indent before trying the other.
 
 Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedagogy is out of scope for this extension ;).
 
