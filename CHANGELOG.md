@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.0.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.2.0...v1.0.0) (2019-04-04)
+
+
+### Bug Fixes
+
+* **#7:** Fix RI incorrectly selecting following lines when indenting.  Handle n+1 permutations when ([21ebd1a](https://github.com/cnojima/vscode-extension-readable-indent/commit/21ebd1a)), closes [#7](https://github.com/cnojima/vscode-extension-readable-indent/issues/7)
+* **#8:** Fix Indenter adding whitespace indentation when permuting readable-intent. ([aeb2442](https://github.com/cnojima/vscode-extension-readable-indent/commit/aeb2442)), closes [#8](https://github.com/cnojima/vscode-extension-readable-indent/issues/8)
+
+
+
 # [0.2.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.1.4...v0.2.0) (2019-04-03)
 
 
