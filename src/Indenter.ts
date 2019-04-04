@@ -8,7 +8,7 @@ class Indenter {
   // @description Flag to center-justify on pivot char.
   private _centerJustify     : boolean = false;
   // @description Flag to alphabetize lines of code when making readable
-  private alphabetize        : boolean;
+  private _alphabetize        : boolean = false;
   // @description Lines of code split on newlines
   private locRaw             : string[];
   // @description Lines of code tokenized on pivot char
@@ -28,14 +28,13 @@ class Indenter {
     tabSize : 2
   };
 
-  constructor(code: string, config: WorkspaceConfiguration | { alphabetize: boolean }) {
+  constructor(code: string) {
     this.locRaw = code.split(/[\n]/);
-    this.alphabetize = config.alphabetize;
   }
 
   private sortLines(): void {
     // alpha sort if configuration is set
-    if (this.alphabetize === true) {
+    if (this._alphabetize === true) {
       this.locRaw = customAlphaSort(this.locRaw);
     }
   }
@@ -173,6 +172,13 @@ class Indenter {
    */
   public set centerJustify(centerJustified: boolean) {
     this._centerJustify = centerJustified;
+  }
+
+  /**
+   * Sets alphabetize flag
+   */
+  public set alphabetize(alphabetize: boolean) {
+    this._alphabetize = alphabetize;
   }
 
   /**

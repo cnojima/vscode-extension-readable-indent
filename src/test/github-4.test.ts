@@ -18,7 +18,9 @@ suite("Github Issue #4", function () {
     const expected = fs.readFileSync(path.resolve(supportPath, 'github-4-expected.txt'), 'utf-8');
     let foo;
 
-    const ind = new Indenter(code, { alphabetize: false });
+    const ind = new Indenter(code);
+		ind.alphabetize = false;
+    foo = ind.indent();
     foo = ind.indent();
     assert.equal(foo, expected);
   });
@@ -28,7 +30,8 @@ suite("Github Issue #4", function () {
     const expected = fs.readFileSync(path.resolve(supportPath, 'github-4.1-expected.txt'), 'utf-8');
     let foo;
 
-    const ind = new Indenter(code, { alphabetize: false });
+		const ind = new Indenter(code);
+		ind.alphabetize = false;
     ind.centerJustify = true;
     foo = ind.indent();
     assert.equal(foo, expected);

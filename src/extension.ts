@@ -20,9 +20,6 @@ const indentWithPivotAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEd
 const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false, alphabetize: boolean = false) => {
 	const doc = textEditor.document;
 	const sel = textEditor.selection;
-	const config = {
-		alphabetize: alphabetize
-	};
 
 	try {
 		const firstLine = doc.lineAt(sel.start.line);
@@ -31,11 +28,13 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		// ensure that entire lines are being replaced as the granularity is line-based
 		const expandedSelection = new vscode.Range(firstLine.lineNumber, 0, lastLine.lineNumber, lastLine.text.length);
 		// use the Indenter to munge the full selection
-		const replace = new Indenter(doc.getText(expandedSelection), config);
+		const replace = new Indenter(doc.getText(expandedSelection));
 		// pass in context like `tabSize`
 		replace.textEditorOptions = textEditor.options;
 		// tell Indenter instance to use left or center justification
 		replace.centerJustify = centerJustified;
+		// tell Indenter to alphabetize
+		replace.alphabetize = alphabetize;
 		// replace with indented code
 		edit.replace(expandedSelection,  replace.indent());
 		// re-select the newly replaced lines to keep visual context in editor
