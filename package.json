@@ -3,7 +3,7 @@
 	"publisher": "cnojima",
 	"displayName": "Readable Indent",
 	"description": "Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.",
-	"icon": "./docs/favicon.png",
+	"icon": "docs/favicon.png",
 	"qna": "marketplace",
 	"categories": [
 		"Snippets",
