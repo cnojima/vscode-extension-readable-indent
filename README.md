@@ -17,6 +17,9 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 ### Left-justified, alphabetized readable-indent
 ![left-justified](docs/indent-alpha.gif)
 
+### Center-justified readable-indent
+![center-justified](docs/indent-center.gif)
+
 ### Center-justified, alphabetized readable-indent
 ![center-justified](docs/indent-center-alpha.gif)
 

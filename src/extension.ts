@@ -29,7 +29,7 @@ const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, 
 		const lastLine = doc.lineAt(sel.end.line);
 
 		// ensure that entire lines are being replaced as the granularity is line-based
-		const expandedSelection = new vscode.Range(firstLine.lineNumber, 0, lastLine.lineNumber + 1, 0);
+		const expandedSelection = new vscode.Range(firstLine.lineNumber, 0, lastLine.lineNumber, lastLine.text.length);
 		// use the Indenter to munge the full selection
 		const replace = new Indenter(doc.getText(expandedSelection), config);
 		// pass in context like `tabSize`
