@@ -17,7 +17,9 @@
 	"main": "./out/extension.js",
 	"activationEvents": [
 		"onCommand:extension.readableIndent.indent",
-		"onCommand:extension.readableIndent.indentWithPivot"
+		"onCommand:extension.readableIndent.indentAlpha",
+		"onCommand:extension.readableIndent.indentWithPivot",
+		"onCommand:extension.readableIndent.indentWithPivotAlpha"
 	],
 	"contributes": {
 		"commands": [

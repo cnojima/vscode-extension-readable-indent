@@ -16,17 +16,17 @@ suite("Github Issue #7", function () {
   test('selected range does not add following lines on indentation', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
-    const ind1 = new Indenter(code);
+    const ind1 = new Indenter();
     ind1.alphabetize = false;
-    const foo = ind1.indent();
+    const foo = ind1.indent(code);
     
-    const ind2 = new Indenter(foo);
+    const ind2 = new Indenter();
     ind2.alphabetize = false;
-    const fooPermutation = ind2.indent();
+    const fooPermutation = ind2.indent(foo);
 
-    const ind3 = new Indenter(fooPermutation);
+    const ind3 = new Indenter();
     ind3.alphabetize = true;
-    const bar = ind3.indent();
+    const bar = ind3.indent(fooPermutation);
 
     assert.equal(foo.split('\n').length, fooPermutation.split('\n').length);
     assert.equal(foo.split('\n').length, bar.split('\n').length);
