@@ -6,21 +6,26 @@
 	"icon": "./docs/favicon.png",
 	"qna": "marketplace",
 	"categories": [
-		"Snippets", "Formatters"
+		"Snippets",
+		"Formatters"
 	],
 	"keywords": [
-		"editor", "indent", "code indentation"
+		"editor",
+		"indent",
+		"code indentation"
 	],
-	"badges": [{
-		"description": "Commitizen Friendly!",
-		"href": "http://commitizen.github.io/cz-cli/",
-		"url": "https://img.shields.io/badge/commitizen-friendly-brightgreen.svg"
-	}],
+	"badges": [
+		{
+			"description": "Commitizen Friendly!",
+			"href": "http://commitizen.github.io/cz-cli/",
+			"url": "https://img.shields.io/badge/commitizen-friendly-brightgreen.svg"
+		}
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
 	},
-	"version": "0.2.0",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
