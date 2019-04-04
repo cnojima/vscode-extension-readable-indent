@@ -37,8 +37,6 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 
 ## Known Issues
 
-Due to conflicting prioritization of whitespace between left & center-justified readable-indentation, toggling between the two will incrementally further indent the snippet.  The workaround is to undo the readable-indent before trying the other.
-
 Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedagogy is out of scope for this extension ;).
 
 ## Release Notes
