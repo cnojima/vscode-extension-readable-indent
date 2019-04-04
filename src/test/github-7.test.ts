@@ -14,17 +14,19 @@ suite("Github Issue #7", function () {
   const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
 
   test('selected range does not add following lines on indentation', () => {
-    const cfg = { alphabetize: false };
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
-    const ind1 = new Indenter(code, cfg);
-    const foo = ind1.indent();
+    const ind1 = new Indenter();
+    ind1.alphabetize = false;
+    const foo = ind1.indent(code);
     
-    const ind2 = new Indenter(foo, cfg);
-    const fooPermutation = ind2.indent();
+    const ind2 = new Indenter();
+    ind2.alphabetize = false;
+    const fooPermutation = ind2.indent(foo);
 
-    const ind3 = new Indenter(fooPermutation, { alphabetize: true });
-    const bar = ind3.indent();
+    const ind3 = new Indenter();
+    ind3.alphabetize = true;
+    const bar = ind3.indent(fooPermutation);
 
     assert.equal(foo.split('\n').length, fooPermutation.split('\n').length);
     assert.equal(foo.split('\n').length, bar.split('\n').length);

@@ -1,20 +1,25 @@
 import { TextEditorOptions, WorkspaceConfiguration } from "vscode";
 import customAlphaSort from './util/alpha-sort';
+import hash from './util/hash';
 
 /**
  * Indenter
  */
 class Indenter {
+  // @description Flag to alphabetize lines of code when making readable
+  private _alphabetize       : boolean = false;
   // @description Flag to center-justify on pivot char.
   private _centerJustify     : boolean = false;
-  // @description Flag to alphabetize lines of code when making readable
-  private alphabetize        : boolean;
   // @description Lines of code split on newlines
-  private locRaw             : string[];
+  private locRaw             : string[] = [];
   // @description Lines of code tokenized on pivot char
   private loc                : string[][] = [[]];
   // @description Capture of detected indent - preserves tab chars vs space chars
   private initialIndent      : string = '';
+  // @description
+  private _origin             : string = '';
+  // @description md5 hash of input
+  private _originHash         : string = '';
   // @description Character to use when left-padding for indentation
   private padChar            : string = ' ';
   // @description Detected character index of pivot character for center-justified indentation
@@ -28,14 +33,24 @@ class Indenter {
     tabSize : 2
   };
 
-  constructor(code: string, config: WorkspaceConfiguration | { alphabetize: boolean }) {
-    this.locRaw = code.split(/[\n]/);
-    this.alphabetize = config.alphabetize;
+  constructor() {
+  }
+
+  /**
+   * Generate a md5 hash to determine if this is a permutation
+   * @param 
+   */
+  private reuseOriginal(s: string): boolean {
+    if (this._originHash) {
+      return hash(s) === this._originHash;
+    }
+
+    return false;
   }
 
   private sortLines(): void {
     // alpha sort if configuration is set
-    if (this.alphabetize === true) {
+    if (this._alphabetize === true) {
       this.locRaw = customAlphaSort(this.locRaw);
     }
   }
@@ -77,8 +92,8 @@ class Indenter {
         if (indent.length > 0) {
           if (
             !this.initialIndent // first entry
-              // for left-justified, max is desired
-              || (!this._centerJustify && (indent.length > this.initialIndent.length))
+              // for left-justified, max is desired :: github#8 - keep?
+              // || (!this._centerJustify && (indent.length < this.initialIndent.length))
               // for center-justified, min is desired
               || ( this._centerJustify && (indent.length < this.initialIndent.length))
           ) {
@@ -160,6 +175,13 @@ class Indenter {
   /*****************************************************************************
    **** start: PUBLIC METHODS and PROPERTIES 
    *****************************************************************************/
+  public get origin(): string {
+    return this._origin;
+  }
+
+  public get originHash(): string {
+    return this._originHash;
+  }
 
   /**
    * Sets text editor options
@@ -176,10 +198,25 @@ class Indenter {
   }
 
   /**
+   * Sets alphabetize flag
+   */
+  public set alphabetize(alphabetize: boolean) {
+    this._alphabetize = alphabetize;
+  }
+
+  /**
    * Indents indenter
    * @returns string Indented as requested
    */
-  public indent(): string {
+  public indent(code: string): string {
+    if (this.reuseOriginal(code)) {
+      this.locRaw = this._origin.split(/\n/);
+    } else {
+      this._origin = code;
+      this._originHash = hash(this._origin);
+      this.locRaw = code.split(/\n/);
+    }
+
     this.sortLines();
 
     this.determineIndentType();
