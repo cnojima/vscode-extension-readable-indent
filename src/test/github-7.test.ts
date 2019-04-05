@@ -1,18 +1,14 @@
 /**
- *  tests for https://github.com/cnojima/vscode-extension-readable-indent/issues/3
+ *  tests for https://github.com/cnojima/vscode-extension-readable-indent/issues/7
  */
+import * as fs from 'fs';
+import * as path from 'path';
 import * as assert from 'assert';
 import Indenter from '../Indenter';
-import * as vscode from 'vscode';
-
-const fs = require('fs');
-const path = require('path');
 
 const supportPath = path.resolve(__dirname, '../../src/test/support');
 
 suite("Github Issue #7", function () {
-  const config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('readableIndent');
-
   test('selected range does not add following lines on indentation', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
