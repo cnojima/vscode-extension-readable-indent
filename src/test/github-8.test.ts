@@ -1,14 +1,17 @@
+/**
+ * tests for https://github.com/cnojima/vscode-extension-readable-indent/issues/8
+ */
+
 import * as fs from 'fs';
 import * as path from 'path';
-import * as crypto from 'crypto';
 import * as assert from 'assert';
 import Indenter from '../Indenter';
 import hash from '../util/hash';
 
-const supportPath = path.resolve(__dirname, '../../src/test/support');
-const indented = fs.readFileSync(path.resolve(supportPath, 'github-8.1.txt'), 'utf-8');
+const supportPath          = path.resolve(__dirname, '../../src/test/support');
+const indented             = fs.readFileSync(path.resolve(supportPath, 'github-8.1.txt'), 'utf-8');
 const indentedAlphabetized = fs.readFileSync(path.resolve(supportPath, 'github-8.txt'), 'utf-8');
-const noIndentionNoAlpha = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
+const noIndentionNoAlpha   = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
 suite('Github Issue #8', () => {
   test('hash util returns identical digest for strings with different whitespace', () => {
