@@ -1,0 +1,5 @@
+type TripUpdateResponse {
+  successReallyLongKey : Boolean!
+  message              : String
+  launches             : [Launch]
+}
