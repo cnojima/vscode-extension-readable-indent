@@ -34,6 +34,17 @@ class Indenter {
   };
 
   constructor() {
+    this.reset();
+  }
+
+  /**
+   * reset flags and detected values
+   */
+  private reset(): void {
+    this.initialIndent  = '';
+    this.pivotIndex     = 0;
+    this.pivotIndexAlt  = 0;
+    this.pivotSeparator = '=';
   }
 
   /**
@@ -209,6 +220,8 @@ class Indenter {
    * @returns string Indented as requested
    */
   public indent(code: string): string {
+    this.reset();
+
     if (this.reuseOriginal(code)) {
       this.locRaw = this._origin.split(/\n/);
     } else {
