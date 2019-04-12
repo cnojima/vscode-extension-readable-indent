@@ -172,7 +172,7 @@ class Indenter {
 
   private isUseablePivot(line: string, index: number): boolean {
     let usable = true;
-    const contextChars = ['"', "'", '`'];
+    const contextChars = ['"', "'", '`', '(', ')'];
 
     for (let i=0, n=line.length; i<n && i<index; i++) {
       if (contextChars.indexOf(line.charAt(i)) > -1) {
