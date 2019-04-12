@@ -1,0 +1,4 @@
+{
+  "raw": "type Mutation {\n    bookTrips(launchIds: [ID]!): TripUpdateResponse!\n    cancelTrip(launchId: ID!): TripUpdateResponse!\n    login(email: String): String\n  }",
+  "expected": "type Mutation {\n    bookTrips(launchIds: [ID]!) : TripUpdateResponse!\n    cancelTrip(launchId: ID!)   : TripUpdateResponse!\n    login(email: String)        : String\n  }"
+}

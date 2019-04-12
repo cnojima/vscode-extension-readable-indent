@@ -34,6 +34,17 @@ class Indenter {
   };
 
   constructor() {
+    this.reset();
+  }
+
+  /**
+   * reset flags and detected values
+   */
+  private reset(): void {
+    this.initialIndent  = '';
+    this.pivotIndex     = 0;
+    this.pivotIndexAlt  = 0;
+    this.pivotSeparator = '=';
   }
 
   /**
@@ -161,7 +172,7 @@ class Indenter {
 
   private isUseablePivot(line: string, index: number): boolean {
     let usable = true;
-    const contextChars = ['"', "'", '`'];
+    const contextChars = ['"', "'", '`', '(', ')'];
 
     for (let i=0, n=line.length; i<n && i<index; i++) {
       if (contextChars.indexOf(line.charAt(i)) > -1) {
@@ -209,6 +220,8 @@ class Indenter {
    * @returns string Indented as requested
    */
   public indent(code: string): string {
+    this.reset();
+
     if (this.reuseOriginal(code)) {
       this.locRaw = this._origin.split(/\n/);
     } else {
