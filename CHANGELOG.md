@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.1](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.0.0...v1.0.1) (2019-04-12)
+
+
+### Bug Fixes
+
+* **#12:** reset pivots, chars, etc. before subsequent RI indent ops to ensure expected indentation ([6e2f850](https://github.com/cnojima/vscode-extension-readable-indent/commit/6e2f850)), closes [#12](https://github.com/cnojima/vscode-extension-readable-indent/issues/12)
+* **Indenter:** Handle parens when considering chars for pivot. ([48faa17](https://github.com/cnojima/vscode-extension-readable-indent/commit/48faa17)), closes [#13](https://github.com/cnojima/vscode-extension-readable-indent/issues/13)
+* **Indenter:** reset pivots, chars, etc. before subsequent RI indent ops to ensure expected indentation ([d242a27](https://github.com/cnojima/vscode-extension-readable-indent/commit/d242a27))
+
+
+
 # [1.0.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v0.2.0...v1.0.0) (2019-04-04)
 
 
