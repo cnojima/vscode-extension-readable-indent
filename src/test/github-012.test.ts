@@ -14,7 +14,7 @@ const raw2 = fs.readFileSync(path.resolve(supportPath, 'github-12.1-raw.txt'), '
 const expected1 = fs.readFileSync(path.resolve(supportPath, 'github-12-expected.txt'), 'utf-8');
 const expected2 = fs.readFileSync(path.resolve(supportPath, 'github-12.1-expected.txt'), 'utf-8');
 
-suite('Github Issue #12', () => {
+suite('Github Issue #12 Tests', () => {
   test('subsequent RI functions should use reset value, pivots, etc.', () => {
     const ind = new Indenter();
     const res1 = ind.indent(raw1);

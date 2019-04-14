@@ -20,12 +20,14 @@ const indentWithPivotAlpha = (textEditor: vscode.TextEditor, edit: vscode.TextEd
  * Perform indention and replacement
  */
 const formatText = (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, centerJustified: boolean = false, alphabetize: boolean = false) => {
-	const doc = textEditor.document;
+  const doc = textEditor.document;
 	const sel = textEditor.selection;
+	// must set config options for runtime changes
+	replace.configOptions = vscode.workspace.getConfiguration('extension.readableIntent');
 
 	try {
-		const firstLine = doc.lineAt(sel.start.line);
-		const lastLine = doc.lineAt(sel.end.line);
+    const firstLine = doc.lineAt(sel.start.line);
+    const lastLine  = doc.lineAt(sel.end.line);
 
 		// ensure that entire lines are being replaced as the granularity is line-based
 		const expandedSelection = new vscode.Range(firstLine.lineNumber, 0, lastLine.lineNumber, lastLine.text.length);

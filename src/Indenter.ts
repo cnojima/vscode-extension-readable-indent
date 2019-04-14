@@ -2,32 +2,38 @@ import { TextEditorOptions, WorkspaceConfiguration } from "vscode";
 import customAlphaSort from './util/alpha-sort';
 import hash from './util/hash';
 
+type ConfigOptions = { minimumWhitespaceBeforePivot: number } | WorkspaceConfiguration;
+
 /**
  * Indenter
  */
 class Indenter {
   // @description Flag to alphabetize lines of code when making readable
-  private _alphabetize       : boolean = false;
+  private _alphabetize   : boolean = false;
   // @description Flag to center-justify on pivot char.
-  private _centerJustify     : boolean = false;
+  private _centerJustify : boolean = false;
+  // @description VSCode Workspace configuration for RI
+  private _configOptions : ConfigOptions = {
+    minimumWhitespaceBeforePivot: 10
+  };
   // @description Lines of code split on newlines
-  private locRaw             : string[] = [];
+  private locRaw         : string[] = [];
   // @description Lines of code tokenized on pivot char
-  private loc                : string[][] = [[]];
+  private loc            : string[][] = [[]];
   // @description Capture of detected indent - preserves tab chars vs space chars
-  private initialIndent      : string = '';
+  private initialIndent  : string = '';
   // @description
-  private _origin             : string = '';
+  private _origin        : string = '';
   // @description md5 hash of input
-  private _originHash         : string = '';
+  private _originHash    : string = '';
   // @description Character to use when left-padding for indentation
-  private padChar            : string = ' ';
+  private padChar        : string = ' ';
   // @description Detected character index of pivot character for center-justified indentation
-  private pivotIndex         : number = 0;
+  private pivotIndex     : number = 0;
   // @description Detected character index of pivot character for left-justified indentation
-  private pivotIndexAlt      : number = 0;
+  private pivotIndexAlt  : number = 0;
   // @description Detected character for pivot
-  private pivotSeparator     : string = '=';
+  private pivotSeparator : string = '=';
   // @description Expanding tabs to space for indentation, detected from workspace.editor settings
   private _textEditorOptions : TextEditorOptions = {
     tabSize : 2
@@ -151,7 +157,6 @@ class Indenter {
             focusPivotIndex = _pivotIndex;
           }
         }
-  
       }
       
       const line = [
@@ -165,6 +170,11 @@ class Indenter {
       // get pivot index for left-justified indentation
       const altIndex = line[0].trim().length + this.initialIndent.length;
       this.pivotIndexAlt = (altIndex > this.pivotIndexAlt) ? altIndex : this.pivotIndexAlt;
+
+      // if pivotIndexAlt is less than than the configured minimum, use the config value
+      this.pivotIndexAlt = (this.pivotIndexAlt > this._configOptions.minimumWhitespaceBeforePivot)
+       ? this.pivotIndexAlt
+       : this._configOptions.minimumWhitespaceBeforePivot;
 
       return line;
     });
@@ -192,6 +202,13 @@ class Indenter {
 
   public get originHash(): string {
     return this._originHash;
+  }
+
+  /**
+   * sets VSCode configuration options
+   */
+  public set configOptions(options: ConfigOptions) {
+    this._configOptions = options;
   }
 
   /**

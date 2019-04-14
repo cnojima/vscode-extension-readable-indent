@@ -25,7 +25,7 @@
 		"type": "git",
 		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
 	},
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -37,6 +37,18 @@
 		"onCommand:extension.readableIndent.indentWithPivotAlpha"
 	],
 	"contributes": {
+		"configuration": [
+			{
+				"title": "Minimum whitespace before pivot",
+				"properties": {
+					"extension.readableIntent.minimumWhitespaceBeforePivot": {
+						"default": 0,
+						"markdownDescription": "The minimum number of whitespace chars (using space) to calculate BEFORE the pivot character. \n\n*E.g. setting `10`:*\n```json\n{\n  \"a\": \"foo\"\n}```\n*results in:*\n```json\n{\n  \"a\"      : \"foo\"\n}```",
+						"type": "integer"
+					}
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "extension.readableIndent.indent",
@@ -107,12 +119,12 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"release": "standard-version",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+		"test": "npm run compile && node ./node_modules/vscode/bin/test",
+		"vscode:prepublish": "npm run compile",
+		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
 		"@types/mocha": "^2.2.42",

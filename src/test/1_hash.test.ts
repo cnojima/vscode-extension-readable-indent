@@ -2,7 +2,7 @@ import * as crypto from 'crypto';
 import * as assert from 'assert';
 import hash from '../util/hash';
 
-suite('Hash util test suite', () => {
+suite('Hash Utility Tests', () => {
   test('md5 is reasonable', () => {
     const str = 'This is a string';
     const squished = 'Thisisastring';
