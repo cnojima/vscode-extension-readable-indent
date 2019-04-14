@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.1.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.0.1...v1.1.0) (2019-04-14)
+
+
+### Features
+
+* **Indenter:** Add support for `minimumWhitespaceBeforePivot` ([d3a80b1](https://github.com/cnojima/vscode-extension-readable-indent/commit/d3a80b1)), closes [#16](https://github.com/cnojima/vscode-extension-readable-indent/issues/16)
+
+
+
 ## [1.0.1](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.0.0...v1.0.1) (2019-04-12)
 
 
