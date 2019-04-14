@@ -8,8 +8,8 @@ import Indenter from '../Indenter';
 
 const supportPath = path.resolve(__dirname, '../../src/test/support');
 
-suite("Github Issue #3", function () {
-  test('Github Issue 3 test', () => {
+suite("Github Issue #3 Tests", function () {
+  test('Alpha-order sort is broken', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-3-raw.txt'), 'utf-8');
     const expected = fs.readFileSync(path.resolve(supportPath, 'github-3-expected.txt'), 'utf-8');
     let foo;

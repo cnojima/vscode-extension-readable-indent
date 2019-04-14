@@ -8,8 +8,8 @@ import Indenter from '../Indenter';
 
 const supportPath = path.resolve(__dirname, '../../src/test/support');
 
-suite("Github Issue #7", function () {
-  test('selected range does not add following lines on indentation', () => {
+suite("Github Issue #7 Tests", function () {
+  test('Permutations of Readable Intent unexpectedly selects trailing newline', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
     const ind1 = new Indenter();
