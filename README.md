@@ -34,6 +34,24 @@ When applying readable-indent, use the pattern that makes the code snippet most 
 | Indent Centered              	| `cmd-i cmd-b`       	| `ctrl-i ctrl-b`       	|
 | Indent Centered Alphabetized 	| `cmd-i cmd-shift-b` 	| `ctrl-i ctrl-shift-b` 	|
 
+## VS Code Configuration
+
+#### Minimum Whitespace Before Pivot (Left-justfied Indent only)
+
+Readable Indent adds a simple configuration to set a minimum whitespace gap from the start of the `key` to the pivot character.  E.g.:
+```json
+{
+  "a": "foo",
+  "bc": "bar"
+}
+```
+With a setting of `10`, the above will be indented as:
+```json
+{
+  "a"      : "foo",
+  "bc"     : "bar"
+}
+```
 
 ## Known Issues
 
@@ -41,20 +59,4 @@ Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedago
 
 ## Release Notes
 
-### < 0.1.0
-
-* POC
-* Documentation
-* tests
-
-### 0.1.0
-
-Initial release on VSCE, dogfooding.
-
-### 0.2.0
-
-All Readable Indent functionality exposed via menus, keyboard-chords, and command prompt.
-
-### 1.0.0
-
-Release with all known issues resolved.
+[See CHANGELOG for details](./CHANGELOG.md)
