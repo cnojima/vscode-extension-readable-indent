@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import customAlphaSort from '../util/alpha-sort';
 
-suite("Custom sort tests", () => {
+suite("Custom Sort Tests", () => {
   test('normal alphabeticals', () => {
     const expected = ['a','b','c'];
     const foo      = ['b','c','a'];

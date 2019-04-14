@@ -13,7 +13,7 @@ const indented             = fs.readFileSync(path.resolve(supportPath, 'github-8
 const indentedAlphabetized = fs.readFileSync(path.resolve(supportPath, 'github-8.txt'), 'utf-8');
 const noIndentionNoAlpha   = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
 
-suite('Github Issue #8', () => {
+suite('Github Issue #8 Tests', () => {
   test('hash util returns identical digest for strings with different whitespace', () => {
     assert.equal(hash(indented), hash(indentedAlphabetized));
     assert.equal(hash(indentedAlphabetized), hash(noIndentionNoAlpha));

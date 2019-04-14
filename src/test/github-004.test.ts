@@ -8,8 +8,8 @@ import Indenter from '../Indenter';
 
 const supportPath = path.resolve(__dirname, '../../src/test/support');
 
-suite("Github Issue #4", function () {
-  test('Github Issue 4 test :: left-justified', () => {
+suite("Github Issue #4 Tests", function () {
+  test('Gracefully handle pivot chars when more than 1 instance is found :: left-justified', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4-raw.txt'), 'utf-8');
     const expected = fs.readFileSync(path.resolve(supportPath, 'github-4-expected.txt'), 'utf-8');
     let foo;
@@ -20,7 +20,7 @@ suite("Github Issue #4", function () {
     assert.equal(foo, expected);
   });
 
-  test('Github Issue 4.1 test :: center-justified', () => {
+  test('Gracefully handle pivot chars when more than 1 instance is found :: center-justified', () => {
     const code = fs.readFileSync(path.resolve(supportPath, 'github-4.1-raw.txt'), 'utf-8');
     const expected = fs.readFileSync(path.resolve(supportPath, 'github-4.1-expected.txt'), 'utf-8');
     let foo;
