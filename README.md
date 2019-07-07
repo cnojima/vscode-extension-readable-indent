@@ -7,7 +7,9 @@ Indents imports, KVPs (like object literals) with a pivot character sequence, pa
 
 ## Features
 
-Simple indentation will make your code easier to visually scan.  This extension will indent three common patterns on a pivot character sequence:  **`=`** or **`:`** **`=>`** (fat-arrows)
+Simple indentation will make your code easier to visually scan.  This extension will indent three common patterns on a pivot character sequence:  **`=`** or **`:`** or **`=>`** (fat-arrows).
+
+Support for user-configured custom sequences will be added in a future release.
 
 When applying readable-indent, use the pattern that makes the code snippet most readable:
 
