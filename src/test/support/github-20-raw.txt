@@ -1,0 +1,7 @@
+	'something' => 1,
+	'else' => "value",
+	'is' => 1,
+	'expected' => "value",
+	'for-a-long-key' => 1,
+	'right' => "value",
+  
