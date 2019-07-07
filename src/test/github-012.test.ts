@@ -1,5 +1,5 @@
 /**
- * tests for https://github.com/cnojima/vscode-extension-readable-indent/issues/8
+ * tests for https://github.com/cnojima/vscode-extension-readable-indent/issues/12
  */
 
 import * as fs from 'fs';

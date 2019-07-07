@@ -2,12 +2,12 @@
 
 # Readable Indent VS Code Extension
 
-Indents imports, KVPs (like object literals) with a pivot point, padding whitespace for easy scanability.
+Indents imports, KVPs (like object literals) with a pivot character sequence, padding whitespace for easy scanability.
 
 
 ## Features
 
-Simple indentation will make your code easier to visually scan.  This extension will indent two common patterns on a pivot character:  **`=`** or  **`:`**
+Simple indentation will make your code easier to visually scan.  This extension will indent three common patterns on a pivot character sequence:  **`=`** or **`:`** **`=>`** (fat-arrows)
 
 When applying readable-indent, use the pattern that makes the code snippet most readable:
 
