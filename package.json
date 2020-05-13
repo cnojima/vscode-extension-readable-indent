@@ -12,7 +12,8 @@
 	"keywords": [
 		"editor",
 		"indent",
-		"code indentation"
+    "code indentation",
+    "code formatting"
 	],
 	"badges": [
 		{
@@ -119,7 +120,8 @@
 		}
 	},
 	"scripts": {
-		"compile": "tsc -p ./",
+    "commit": "npx git-cz",
+    "compile": "tsc -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"release": "standard-version",
 		"test": "npm run compile && node ./node_modules/vscode/bin/test",
@@ -130,10 +132,12 @@
 		"@types/mocha": "^2.2.42",
 		"@types/node": "^10.12.21",
 		"cz-conventional-changelog": "^2.1.0",
-		"standard-version": "^5.0.2",
+		"minimist": "^1.2.5",
+		"standard-version": "^8.0.0",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
-		"vscode": "^1.1.28"
+		"vscode": "^1.1.28",
+		"yargs-parser": "^18.1.3"
 	},
 	"config": {
 		"commitizen": {
