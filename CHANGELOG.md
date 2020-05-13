@@ -9,6 +9,25 @@ All notable changes to this project will be documented in this file. See [standa
 
 * npm audit fixes ([97860ff](https://github.com/cnojima/vscode-extension-readable-indent/commit/97860ff183a2fa76fded23402d8691b86a6f0998))
 
+
+### [1.2.1](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.2.0...v1.2.1) (2020-07-11)
+
+
+### Documentation
+
+* **Docs:** Fix typo, add info about future support
+
+
+
+# [1.2.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.1.0...v1.2.0) (2019-07-11)
+
+
+### Features
+
+* **Fat-arrow Support:** Add support for `=>` fat-arrow indentation pivot points.
+
+
+
 # [1.1.0](https://github.com/cnojima/vscode-extension-readable-indent/compare/v1.0.1...v1.1.0) (2019-04-14)
 
 
