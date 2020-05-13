@@ -12,8 +12,8 @@
 	"keywords": [
 		"editor",
 		"indent",
-    "code indentation",
-    "code formatting"
+		"code indentation",
+		"code formatting"
 	],
 	"badges": [
 		{
@@ -26,7 +26,7 @@
 		"type": "git",
 		"url": "https://github.com/cnojima/vscode-extension-readable-indent.git"
 	},
-	"version": "1.2.1",
+	"version": "1.2.2",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -120,8 +120,8 @@
 		}
 	},
 	"scripts": {
-    "commit": "npx git-cz",
-    "compile": "tsc -p ./",
+		"commit": "npx git-cz",
+		"compile": "tsc -p ./",
 		"postinstall": "node ./node_modules/vscode/bin/install",
 		"release": "standard-version",
 		"test": "npm run compile && node ./node_modules/vscode/bin/test",
