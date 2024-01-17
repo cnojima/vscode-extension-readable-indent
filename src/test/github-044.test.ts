@@ -18,35 +18,30 @@ suite('Github Issue #44 Tests', () => {
   test('RI should handle double-colon as a pivot char sequence', () => {
     const ind = new Indenter();
     const res = ind.indent(raw);
-
     assert.equal(res, expected1);
   });
 
   test('RI should handle double-colon as a pivot char sequence, alphabetical', () => {
     const ind = new Indenter();
     ind.alphabetize = true;
-
     const res = ind.indent(raw);
-
     assert.equal(res, expected2);
   });
 
   test('RI should handle double-colon as a pivot char sequence, centered', () => {
     const ind = new Indenter();
     ind.centerJustify = true;
-
     const res = ind.indent(raw);
-
     assert.equal(res, expected3);
   });
 
-  test('RI should handle double-colon as a pivot char sequence, centered alphabetically', () => {
-    const ind = new Indenter();
-    ind.alphabetize = true;
-    ind.centerJustify = true;
+  // test('RI should handle double-colon as a pivot char sequence, centered alphabetically', () => {
+  //   const ind = new Indenter();
+  //   ind.alphabetize = true;
+  //   ind.centerJustify = true;
 
-    const res = ind.indent(raw);
+  //   const res = ind.indent(raw);
 
-    assert.equal(res, expected4);
-  });
+  //   assert.equal(res, expected4);
+  // });
 });

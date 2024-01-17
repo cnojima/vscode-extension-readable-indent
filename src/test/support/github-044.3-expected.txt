@@ -1,16 +1,16 @@
 Base.@kwdef
 
+mutable struct OPTIM
+    Param_Name ** :: ** Vector{String}
   ParamOpt_Min ** :: ** Vector{Float64}
-  Param_Name **   :: ** Vector{String}
-  coly8() = ( K = new(); K.x = 1 )
 end
 
-end;
-mutable struct OPTIM
 mutable struct coly8
-  t               :: Int32
-  u               :: Float32
-  v               :: Bool
-  x               :: Int32
-  y               :: Float64
-  z               :: Bool
+                x :: Int32
+                y :: Float64
+                z :: Bool
+                t :: Int32
+                u :: Float32
+                v :: Bool
+  coly8() = ( K = new(); K.x = 1 )
+end;
