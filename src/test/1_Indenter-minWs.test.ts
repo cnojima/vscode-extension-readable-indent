@@ -9,7 +9,8 @@ suite("Config.minimumWhitespaceBeforePivot Tests", () => {
     const expected = '{\n  \"a\"      : \"foo\"\n}';
 
     rep.configOptions = {
-      minimumWhitespaceBeforePivot : 10
+      minimumWhitespaceBeforePivot : 10,
+      pivotPadding: true
     };
 
     assert.equal(rep.indent(input), expected);
@@ -20,7 +21,8 @@ suite("Config.minimumWhitespaceBeforePivot Tests", () => {
     const expected = '{\n  \"abcdefgh\" : \"foo\"\n}';
 
     rep.configOptions = {
-      minimumWhitespaceBeforePivot : 3
+      minimumWhitespaceBeforePivot : 3,
+      pivotPadding: true
     };
 
     assert.equal(rep.indent(input), expected);

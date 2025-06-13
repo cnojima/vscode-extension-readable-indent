@@ -2,7 +2,10 @@ import { TextEditorOptions, WorkspaceConfiguration } from "vscode";
 import customAlphaSort from './util/alpha-sort';
 import hash from './util/hash';
 
-type ConfigOptions = { minimumWhitespaceBeforePivot: number } | WorkspaceConfiguration;
+type ConfigOptions = {
+  minimumWhitespaceBeforePivot: number,
+  pivotPadding: boolean
+} | WorkspaceConfiguration;
 
 /**
  * Indenter
@@ -14,7 +17,8 @@ class Indenter {
   private _centerJustify: boolean = false;
   // @description VSCode Workspace configuration for RI
   private _configOptions: ConfigOptions = {
-    minimumWhitespaceBeforePivot: 10
+    minimumWhitespaceBeforePivot: 10,
+    pivotPadding: true
   };
   // @description Lines of code split on newlines
   private locRaw: string[] = [];
@@ -297,14 +301,14 @@ class Indenter {
             line0.padStart(this.pivotIndex, this.padChar),
             this.pivotSeparator,
             line[1].trim()
-          ].join(' ');
+          ].join(this._configOptions.pivotPadding ? ' ' : '');
         } else {
           return [
             this.initialIndent,
             line0.padEnd(this.pivotIndexAlt - this.initialIndent.length, this.padChar),
-            ' ',
+            this._configOptions.pivotPadding ? ' ' : '',
             this.pivotSeparator,
-            ' ',
+            this._configOptions.pivotPadding ? ' ' : '',
             line[1].trim()
           ].join('');
         }

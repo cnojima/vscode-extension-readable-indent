@@ -55,6 +55,23 @@ With a setting of `10`, the above will be indented as:
 }
 ```
 
+#### Pivot Padding
+Whether Readable Indent should use spaces as padding around the pivot character.
+
+E.g. with option *enabled*:
+```json
+{
+  "a" : "foo"
+}
+```
+
+E.g. with option *disabled*:
+```json
+{
+  "a":"foo"
+}
+```
+
 ## Known Issues
 
 Obviously this indentation is conflicted with OOTB rules for `prettier`.  Pedagogy is out of scope for this extension ;).

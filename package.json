@@ -44,8 +44,18 @@
 				"properties": {
 					"extension.readableIntent.minimumWhitespaceBeforePivot": {
 						"default": 0,
-						"markdownDescription": "The minimum number of whitespace chars (using space) to calculate BEFORE the pivot character. \n\n*E.g. setting `10`:*\n```json\n{\n  \"a\": \"foo\"\n}```\n*results in:*\n```json\n{\n  \"a\"      : \"foo\"\n}```",
+						"markdownDescription": "The minimum number of whitespace chars (using space) to calculate BEFORE the pivot character. \n\n*E.g. setting `10`:*\n```json\n{\n  \"a\": \"foo\"\n}\n```\n*results in:*\n```json\n{\n  \"a\"      : \"foo\"\n}\n```",
 						"type": "integer"
+					}
+				}
+			},
+			{
+				"title": "Use space padding around pivot character",
+				"properties": {
+					"extension.readableIntent.pivotPadding": {
+						"default": true,
+						"markdownDescription": "Whether the pivot character should have spaces before and after it. \n\n*E.g. with option **enabled**:*\n```json\n{\n  \"a\" : \"foo\"\n}\n```\n\n*E.g. with option **disabled**:*\n```json\n{\n  \"a\":\"foo\"\n}\n```",
+						"type": "boolean"
 					}
 				}
 			}
@@ -145,6 +155,6 @@
 		}
 	},
 	"standard-version": {
-		"skip": {}
+		"skip": { }
 	}
 }
